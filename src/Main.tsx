@@ -3,7 +3,7 @@ import CropperPage from './Cropper/Cropper.page';
 import { DefaultFooter } from './common';
 import { SCREEN_WIDTH, SCREEN_HEIGHT } from './constants';
 
-export type AmazingCropperProps = {
+export type ExpoAmazingCropperProps = {
   footerComponent?: JSX.Element;
   onDone: (croppedImageUri: string) => void;
   onError: (err: Error) => void;
@@ -41,7 +41,7 @@ const defaultProps = {
   COMPONENT_HEIGHT: SCREEN_HEIGHT,
 };
 
-class Main extends Component<AmazingCropperProps> {
+class Main extends Component<ExpoAmazingCropperProps> {
   static defaultProps = defaultProps;
 
   render() {

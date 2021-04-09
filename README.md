@@ -44,9 +44,9 @@ and Filesystem https://docs.expo.io/versions/latest/sdk/filesystem/ to localise 
 -------------
 ```javascript
 import React, { Component } from 'react';
-import AmazingCropper from 'react-native-amazing-cropper';;
+import ExpoAmazingCropper from 'react-native-amazing-cropper';;
 
-class AmazingCropperPage extends Component {
+class ExpoAmazingCropperPage extends Component {
   //response from Expo Image Picker
   const imagePickerResponse = {
     "cancelled":false,
@@ -71,7 +71,7 @@ class AmazingCropperPage extends Component {
 
   render() {
     return (
-      <AmazingCropper
+      <ExpoAmazingCropper
         onDone={(uri:string)=> onDone(croppedImageUri)}
         onError={(err:any)=> onError(err)}
         onCancel={()=> onCancel()}
@@ -90,9 +90,9 @@ class AmazingCropperPage extends Component {
 -------------
 ```javascript
 import React, { Component } from 'react';
-import AmazingCropper, { DefaultFooter } from 'react-native-amazing-cropper';
+import ExpoAmazingCropper, { DefaultFooter } from 'react-native-amazing-cropper';
 
-class AmazingCropperPage extends Component {
+class ExpoAmazingCropperPage extends Component {
   //response from Expo Image Picker
   const imagePickerResponse = {
     "cancelled":false,
@@ -117,7 +117,7 @@ class AmazingCropperPage extends Component {
 
   render() {
     return (
-      <AmazingCropper
+      <ExpoAmazingCropper
         // Pass custom text to the default footer
         footerComponent={<DefaultFooter doneText='OK' rotateText='ROT' cancelText='BACK' />}
         onDone={(uri:string)=> onDone(croppedImageUri)}
@@ -205,10 +205,10 @@ Now just pass your footer component to the Cropper like here:
 
 ```javascript
 import React, { Component } from 'react';
-import AmazingCropper from 'react-native-amazing-cropper';
+import ExpoAmazingCropper from 'react-native-amazing-cropper';
 import CustomCropperFooter from './src/components/CustomCropperFooter.component';
 
-class AmazingCropperPage extends Component {
+class ExpoAmazingCropperPage extends Component {
   const onDone = (croppedImageUri) => {
     console.log('croppedImageUri = ', croppedImageUri);
     // send image to server for example
@@ -225,7 +225,7 @@ class AmazingCropperPage extends Component {
 
   render() {
     return (
-      <AmazingCropper
+      <ExpoAmazingCropper
         // Use your custom footer component
         // Do NOT pass onDone, onRotate and onCancel to the footer component, the Cropper will do it for you
         footerComponent={<CustomCropperFooter />}

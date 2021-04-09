@@ -3,16 +3,11 @@ Image cropper for Expo made with Animated API (with rotation possibility). </br>
 Based on https://github.com/ggunti/react-native-amazing-cropper package. </br>
 
 
-<img src="https://i.imgur.com/c5lqfLr.png" height="200" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://i.imgur.com/HNHkWQ7.png" height="200" />
+<img src="https://i.imgur.com/c5lqfLr.png" height="300" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://i.imgur.com/HNHkWQ7.png" height="300" />
+<img src="https://i.imgur.com/iyhmNav.png" height="300" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://i.imgur.com/5AJTFHZ.png" height="300" />
 <br/>
-<img src="https://i.imgur.com/iyhmNav.png" height="200" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://i.imgur.com/5AJTFHZ.png" height="200" />
-<br/>
-
-<br/>
-
-<img src="https://i.imgur.com/1GqvB6v.png" height="200" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://i.imgur.com/sz1bpT9.png" height="200" />
-<br/>
-<img src="https://i.imgur.com/Xf3PqJH.png" height="200" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://i.imgur.com/Ae4YRGS.png" height="200" />
+<img src="https://i.imgur.com/1GqvB6v.png" height="300" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://i.imgur.com/sz1bpT9.png" height="300" />
+<img src="https://i.imgur.com/Xf3PqJH.png" height="300" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://i.imgur.com/Ae4YRGS.png" height="300" />
 
 This component require on `expo-image-manipulator` libraries. </br>
 You can use with Expo ImagePicker to fetch Image Properties and Expo Filesystem to localise the image.</br>

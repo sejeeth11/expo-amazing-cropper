@@ -1,7 +1,7 @@
-# react-native-amazing-cropper
-Image cropper for react native made with Animated API (with rotation possibility) - **for iOS & android**
+# expo-amazing-cropper
+Image cropper for Expo made with Animated API (with rotation possibility). </br>
+Based on https://github.com/ggunti/react-native-amazing-cropper packages. </br>
 
-<p><b>It is written in typescript!</b></p>
 
 <img src="https://i.imgur.com/c5lqfLr.png" height="400" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://i.imgur.com/HNHkWQ7.png" height="400" />
 <br/>
@@ -14,14 +14,13 @@ Image cropper for react native made with Animated API (with rotation possibility
 <br/>
 <img src="https://i.imgur.com/Xf3PqJH.png" height="400" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://i.imgur.com/Ae4YRGS.png" height="400" />
 
-This component depend on `react-native-image-rotate` and `@react-native-community/image-editor` libraries. They need to be installed and linked to your project before.
+This component require on `expo-image-manipulator` libraries. https://docs.expo.io/versions/v40.0.0/sdk/imagemanipulator/</br>
+You can integrate with Expo ImagePicker to fetch Image Properties https://docs.expo.io/versions/latest/sdk/imagepicker/ </br>
+and Filesystem https://docs.expo.io/versions/latest/sdk/filesystem/ to localise the image.</br>
 
 **STEPS TO INSTALL:** </br>
-1.* `npm install --save react-native-image-rotate @react-native-community/image-editor` </br>
-2. `react-native link react-native-image-rotate @react-native-community/image-editor` </br>
-3.* `npm install --save react-native-amazing-cropper` </br>
-
-Step 2 is not needed for react-native >= 0.60 because of autolinking. Instead run `pod install` inside `ios` directory.
+1.* `expo install expo-image-manipulator` </br>
+2.* `yarn add *this repo link*` </br>
 
 #### Properties
 -------------
@@ -30,7 +29,7 @@ Step 2 is not needed for react-native >= 0.60 because of autolinking. Instead ru
 | onDone | `function` | A function which accepts 1 argument `croppedImageUri`. Called when user press the 'DONE' button |
 | onError | `function` | A function which accepts 1 argument `err` of type `Error`. Called when rotation or cropping fails |
 | onCancel | `function` | A function without arguments. Called when user press the 'CANCEL' button |
-| imageUri | `string` | The uri of the image you want to crop or rotate |
+| imageUri | `string` | The **local** uri of the image you want to crop or rotate |
 | imageWidth | `number` | The width (in pixels) of the image you passed in `imageUri` |
 | imageHeight | `number` | The height (in pixels) of the image you passed in `imageUri` |
 | initialRotation | `number` | Number which set the default rotation of the image when cropper is initialized.</br> Default is `0` |
@@ -48,16 +47,24 @@ import React, { Component } from 'react';
 import AmazingCropper from 'react-native-amazing-cropper';;
 
 class AmazingCropperPage extends Component {
-  onDone = (croppedImageUri) => {
+  //response from Expo Image Picker
+  const imagePickerResponse = {
+    "cancelled":false,
+    "height":1611,
+    "width":2148,
+    "uri":"file:///data/user/0/host.exp.exponent/cache/my-local-image.jpg"
+  }
+
+  const onDone = (croppedImageUri) => {
     console.log('croppedImageUri = ', croppedImageUri);
     // send image to server for example
   }
 
-  onError = (err) => {
+  const onError = (err) => {
     console.log(err);
   }
 
-  onCancel = () => {
+  const onCancel = () => {
     console.log('Cancel button was pressed');
     // navigate back
   }
@@ -65,12 +72,12 @@ class AmazingCropperPage extends Component {
   render() {
     return (
       <AmazingCropper
-        onDone={this.onDone}
-        onError={this.onError}
-        onCancel={this.onCancel}
-        imageUri='https://www.lifeofpix.com/wp-content/uploads/2018/09/manhattan_-11-1600x2396.jpg'
-        imageWidth={1600}
-        imageHeight={2396}
+        onDone={(uri:string)=> onDone(croppedImageUri)}
+        onError={(err:any)=> onError(err)}
+        onCancel={()=> onCancel()}
+        imageUri= imagePickerResponse.uri
+        imageWidth={imagePickerResponse.width}
+        imageHeight={imagePickerResponse.height}
         NOT_SELECTED_AREA_OPACITY={0.3}
         BORDER_WIDTH={20}
       />
@@ -86,16 +93,24 @@ import React, { Component } from 'react';
 import AmazingCropper, { DefaultFooter } from 'react-native-amazing-cropper';
 
 class AmazingCropperPage extends Component {
-  onDone = (croppedImageUri) => {
+  //response from Expo Image Picker
+  const imagePickerResponse = {
+    "cancelled":false,
+    "height":1611,
+    "width":2148,
+    "uri":"file:///data/user/0/host.exp.exponent/cache/my-local-image.jpg"
+  }
+
+  const onDone = (croppedImageUri) => {
     console.log('croppedImageUri = ', croppedImageUri);
     // send image to server for example
   }
 
-  onError = (err) => {
+  const onError = (err) => {
     console.log(err);
   }
 
-  onCancel = () => {
+  const onCancel = () => {
     console.log('Cancel button was pressed');
     // navigate back
   }
@@ -105,12 +120,11 @@ class AmazingCropperPage extends Component {
       <AmazingCropper
         // Pass custom text to the default footer
         footerComponent={<DefaultFooter doneText='OK' rotateText='ROT' cancelText='BACK' />}
-        onDone={this.onDone}
-        onError={this.onError}
-        onCancel={this.onCancel}
-        imageUri='https://www.lifeofpix.com/wp-content/uploads/2018/09/manhattan_-11-1600x2396.jpg'
-        imageWidth={1600}
-        imageHeight={2396}
+        onDone={(uri:string)=> onDone(croppedImageUri)}
+        onError={(err:any)=> onError(err)}
+        imageUri= imagePickerResponse.uri
+        imageWidth={imagePickerResponse.width}
+        imageHeight={imagePickerResponse.height}
       />
     );
   }
@@ -195,16 +209,16 @@ import AmazingCropper from 'react-native-amazing-cropper';
 import CustomCropperFooter from './src/components/CustomCropperFooter.component';
 
 class AmazingCropperPage extends Component {
-  onDone = (croppedImageUri) => {
+  const onDone = (croppedImageUri) => {
     console.log('croppedImageUri = ', croppedImageUri);
     // send image to server for example
   }
 
-  onError = (err) => {
+  const onError = (err) => {
     console.log(err);
   }
 
-  onCancel = () => {
+  const onCancel = () => {
     console.log('Cancel button was pressed');
     // navigate back
   }
@@ -215,21 +229,15 @@ class AmazingCropperPage extends Component {
         // Use your custom footer component
         // Do NOT pass onDone, onRotate and onCancel to the footer component, the Cropper will do it for you
         footerComponent={<CustomCropperFooter />}
-        onDone={this.onDone}
-        onError={this.onError}
-        onCancel={this.onCancel}
-        imageUri='https://www.lifeofpix.com/wp-content/uploads/2018/09/manhattan_-11-1600x2396.jpg'
-        imageWidth={1600}
-        imageHeight={2396}
+        onDone={(uri:string)=> onDone(croppedImageUri)}
+        onCancel={()=> onCancel()}
+        imageUri= imagePickerResponse.uri
+        imageWidth={imagePickerResponse.width}
+        imageHeight={imagePickerResponse.height}
       />
     );
   }
 }
 ```
 
-#### Did you like it? Check out also my mini applications on Google Play:
-Simple Share: https://play.google.com/store/apps/details?id=com.sendfiles </br>
-Card Trick: https://play.google.com/store/apps/details?id=com.card_trick_2 </br>
-Swwwitch: https://play.google.com/store/apps/details?id=com.swwwitch
-
-### Do you need a mobile app for android & iOS? [Hire me](https://order-software.com)
+#### Special thanks to: https://github.com/ggunti

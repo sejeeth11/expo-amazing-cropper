@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Animated, PanResponder, PanResponderInstance, PanResponderGestureState, ImageCropData } from 'react-native';
-// @ts-ignore; 'react-native-image-rotate' does not have typescript support
-import RNImageRotate from 'react-native-image-rotate';
-import ImageEditor from '@react-native-community/image-editor';
+import * as ImageManipulator from 'expo-image-manipulator'
 import { Q } from '../constants';
 import Cropper from './Cropper';
 import { getCropperLimits } from '../utils';
@@ -659,7 +657,7 @@ class CropperPage extends Component<CropperPageProps, State> {
     this.rightOuter.setNativeProps({ style: { top: TOP_LIMIT, height: 0 } });
   };
 
-  onDone = () => {
+  onDone = async() => {
     if (this.isRectangleMoving) {
       return null;
     }
@@ -687,24 +685,25 @@ class CropperPage extends Component<CropperPageProps, State> {
       size: { width, height },
       resizeMode: 'stretch',
     } as ImageCropData;
-    RNImageRotate.rotateImage(
-      this.props.imageUri,
-      this.state.rotation,
-      (rotatedUri: string) => {
-        //
-        ImageEditor.cropImage(rotatedUri, cropData)
-          .then(croppedUri => {
-            this.props.onDone(croppedUri);
-          })
-          .catch((err: Error) => {
-            this.props.onError(err);
-          });
-        //
-      },
-      (err: Error) => {
-        this.props.onError(err);
-      },
-    );
+    await ImageManipulator.manipulateAsync(   //expo package
+      this.props.imageUri, [
+      { rotate: this.state.rotation},
+      { crop: {
+          originX: cropData.offset.x,
+          originY: cropData.offset.y,
+          width: cropData.size.width,
+          height: cropData.size.height
+      }}],
+      {
+          compress: 1,
+          format: ImageManipulator.SaveFormat.PNG,
+          base64: false,
+      }
+    ).then(croppedUri => {
+      this.props.onDone(croppedUri.uri);
+    }).catch((err: Error) => {
+      this.props.onError(err);
+    });
   };
 
   render() {

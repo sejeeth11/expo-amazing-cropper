@@ -1,9 +1,9 @@
 {
-  "name": "react-native-amazing-cropper",
-  "version": "0.1.6",
-  "description": "Custom react native cropper with rotation",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "name": "expo-amazing-cropper",
+  "version": "0.1.0",
+  "description": "Custom image expo cropper with rotation",
+  "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
@@ -11,19 +11,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ggunti/react-native-amazing-cropper.git"
+    "url": "git+https://github.com/HakamRaza/expo-amazing-cropper.git"
   },
   "author": {
-    "name": "Gotha Guntter",
-    "email": "ggunty96@gmail.com"
+    "name": "Hakam Raza",
+    "email": "ismatcd@yahoo.com"
   },
   "license": "MIT",
   "dependencies": {},
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
-    "react-native-image-rotate": "*",
-    "@react-native-community/image-editor": "*"
+    "expo-image-manipulator": "*"
   },
   "devDependencies": {
     "@react-native-community/eslint-config": "^0.0.5",
@@ -60,7 +59,7 @@
     "cropper"
   ],
   "bugs": {
-    "url": "https://github.com/ggunti/react-native-amazing-cropper/issues"
+    "url": "https://github.com/HakamRaza/expo-amazing-cropper/issues"
   },
-  "homepage": "https://github.com/ggunti/react-native-amazing-cropper"
+  "homepage": "https://github.com/HakamRaza/expo-amazing-cropper"
 }

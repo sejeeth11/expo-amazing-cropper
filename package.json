@@ -1,6 +1,6 @@
 {
   "name": "expo-amazing-cropper",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Custom image expo cropper with rotation",
   "main": "index.js",
   "types": "index.d.ts",
@@ -51,7 +51,7 @@
     ]
   },
   "keywords": [
-    "react-native",
+    "expo",
     "react",
     "crop",
     "rotate",

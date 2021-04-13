@@ -1,7 +1,5 @@
 # expo-amazing-cropper
 Image cropper for Expo made with Animated API (with rotation possibility). </br>
-Based on https://github.com/ggunti/react-native-amazing-cropper package. </br>
-
 
 <img src="https://i.imgur.com/c5lqfLr.png" height="300" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://i.imgur.com/HNHkWQ7.png" height="300" />
 <img src="https://i.imgur.com/iyhmNav.png" height="300" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://i.imgur.com/5AJTFHZ.png" height="300" />
@@ -14,7 +12,7 @@ You can use with Expo ImagePicker to fetch Image Properties and Expo Filesystem 
 
 **STEPS TO INSTALL:** </br>
 1.* `expo install expo-image-manipulator` </br>
-2.* `yarn add *this repo link*` </br>
+2.* `yarn add expo-amazing-cropper` </br>
 
 #### Properties
 -------------
@@ -32,6 +30,8 @@ You can use with Expo ImagePicker to fetch Image Properties and Expo Filesystem 
 | BORDER_WIDTH | `number` | The border width [(see image)](https://i.imgur.com/CMSS953.png). Default is `50`|
 | COMPONENT_WIDTH | `number` | The width of the entire component. Default is `Dimensions.get('window').width`, not recommended to change.|
 | COMPONENT_HEIGHT | `number` | The height of the entire component. Default is `Dimensions.get('window').height`, you should change it to fix [hidden footer issue](https://github.com/ggunti/react-native-amazing-cropper/issues/30).|
+| COMPRESS_QUALITY | `number` | The compression quality. Default is 1|
+| OUTPUT_FORMAT | `JPEG` or `PNG` | The output format. Default is `PNG`|
 
 
 #### Usage example 1 (using the default footer)

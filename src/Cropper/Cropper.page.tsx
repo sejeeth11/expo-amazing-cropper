@@ -22,6 +22,8 @@ type CropperPageProps = {
   BORDER_WIDTH: number;
   COMPONENT_WIDTH: number;
   COMPONENT_HEIGHT: number;
+  COMPRESS_QUALITY: number;
+  OUTPUT_FORMAT: 'JPEG'|'PNG';
 };
 
 interface ExtendedAnimatedValue extends Animated.Value {
@@ -671,6 +673,8 @@ class CropperPage extends Component<CropperPageProps, State> {
     let height = this.state.bottomPosition.y._value - this.state.topPosition.y._value - this.props.BORDER_WIDTH;
     let imageWidth = this.props.imageWidth > 0 ? this.props.imageWidth : 1280; // 340
     let imageHeight = this.props.imageHeight > 0 ? this.props.imageHeight : 747; // 500
+    let outputType = this.props.OUTPUT_FORMAT == 'JPEG' ? ImageManipulator.SaveFormat.JPEG : ImageManipulator.SaveFormat.PNG;
+    let quality = this.props.COMPRESS_QUALITY > 1 ? 1 : this.props.COMPRESS_QUALITY;
     if (this.state.rotation % 180 === 90) {
       const pivot = imageWidth;
       imageWidth = imageHeight;
@@ -689,15 +693,15 @@ class CropperPage extends Component<CropperPageProps, State> {
       this.props.imageUri, [
       { rotate: this.state.rotation},
       { crop: {
-          originX: cropData.offset.x,
-          originY: cropData.offset.y,
-          width: cropData.size.width,
-          height: cropData.size.height
+        originX: cropData.offset.x,
+        originY: cropData.offset.y,
+        width: cropData.size.width,
+        height: cropData.size.height
       }}],
       {
-          compress: 1,
-          format: ImageManipulator.SaveFormat.PNG,
-          base64: false,
+        compress: quality,
+        format: outputType,
+        base64: false,
       }
     ).then(croppedUri => {
       this.props.onDone(croppedUri.uri);

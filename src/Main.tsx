@@ -20,6 +20,8 @@ export type ExpoAmazingCropperProps = {
   BORDER_WIDTH?: number;
   COMPONENT_WIDTH?: number;
   COMPONENT_HEIGHT?: number;
+  COMPRESS_QUALITY?: number;
+  OUTPUT_FORMAT?: 'JPEG'| 'PNG';
 } & typeof defaultProps;
 
 const defaultProps = {
@@ -39,6 +41,8 @@ const defaultProps = {
   BORDER_WIDTH: 50,
   COMPONENT_WIDTH: SCREEN_WIDTH,
   COMPONENT_HEIGHT: SCREEN_HEIGHT,
+  COMPRESS_QUALITY: 1,
+  OUTPUT_FORMAT: 'PNG'
 };
 
 class Main extends Component<ExpoAmazingCropperProps> {
@@ -63,6 +67,8 @@ class Main extends Component<ExpoAmazingCropperProps> {
         BORDER_WIDTH={this.props.BORDER_WIDTH}
         COMPONENT_WIDTH={this.props.COMPONENT_WIDTH}
         COMPONENT_HEIGHT={this.props.COMPONENT_HEIGHT}
+        COMPRESS_QUALITY={this.props.COMPRESS_QUALITY}
+        OUTPUT_FORMAT={this.props.OUTPUT_FORMAT}
       />
     );
   }

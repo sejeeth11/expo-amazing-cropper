@@ -38,7 +38,7 @@ You can use with Expo ImagePicker to fetch Image Properties and Expo Filesystem 
 -------------
 ```javascript
 import React, { Component } from 'react';
-import ExpoAmazingCropper from 'react-native-amazing-cropper';;
+import ExpoAmazingCropper from 'expo-amazing-cropper';
 
 class ExpoAmazingCropperPage extends Component {
   //response from Expo Image Picker
